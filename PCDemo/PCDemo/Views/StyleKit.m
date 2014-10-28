@@ -35,7 +35,6 @@
     CGFloat moveButton = 40 * animation + 3;
     CGFloat rotateButton = 90 * animation;
     UIColor* changeColor = [UIColor colorWithRed: 0.84 - 0.58 * animation green: 0.84 - 0.01 * animation blue: 0.84 - 0.52 * animation alpha: 1];
-    CGFloat plusToMinus = 90 - 90 * animation;
 
     //// Switch-Background 2 Drawing
     CGContextSaveGState(context);
@@ -76,7 +75,7 @@
 
         //// Rectangle Drawing
         CGContextSaveGState(context);
-        CGContextRotateCTM(context, -plusToMinus * M_PI / 180);
+        CGContextRotateCTM(context, -180 * M_PI / 180);
         CGContextScaleCTM(context, 1, animation);
 
         UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(-2, -12, 4, 24) cornerRadius: 2];
