@@ -16,6 +16,7 @@
 		E98C2A5D19FF86C800B2338F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98C2A5C19FF86C800B2338F /* Images.xcassets */; };
 		E98C2A6C19FF86C800B2338F /* PCDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C2A6B19FF86C800B2338F /* PCDemoTests.m */; };
 		E98C2A7819FF88B500B2338F /* AnimatableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C2A7719FF88B500B2338F /* AnimatableView.m */; };
+		EA384F9419FFF07B00187383 /* StyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EA384F9319FFF07B00187383 /* StyleKit.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		E98C2A6B19FF86C800B2338F /* PCDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PCDemoTests.m; sourceTree = "<group>"; };
 		E98C2A7619FF88B500B2338F /* AnimatableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatableView.h; sourceTree = "<group>"; };
 		E98C2A7719FF88B500B2338F /* AnimatableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatableView.m; sourceTree = "<group>"; };
+		EA384F9219FFF07B00187383 /* StyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StyleKit.h; sourceTree = "<group>"; };
+		EA384F9319FFF07B00187383 /* StyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleKit.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 		E98C2A7519FF88A500B2338F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA384F9219FFF07B00187383 /* StyleKit.h */,
+				EA384F9319FFF07B00187383 /* StyleKit.m */,
 				E98C2A7619FF88B500B2338F /* AnimatableView.h */,
 				E98C2A7719FF88B500B2338F /* AnimatableView.m */,
 				E938E6FE19FFBA4A003F2B42 /* AnimateLayerView.h */,
@@ -240,6 +245,7 @@
 			files = (
 				E938E70019FFBA4A003F2B42 /* AnimateLayerView.m in Sources */,
 				E98C2A7819FF88B500B2338F /* AnimatableView.m in Sources */,
+				EA384F9419FFF07B00187383 /* StyleKit.m in Sources */,
 				E938E70319FFBA5A003F2B42 /* AnimateTimerView.m in Sources */,
 				E98C2A5819FF86C800B2338F /* ViewController.m in Sources */,
 				E98C2A5519FF86C800B2338F /* AppDelegate.m in Sources */,
