@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E938E70019FFBA4A003F2B42 /* AnimateLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E938E6FF19FFBA4A003F2B42 /* AnimateLayerView.m */; };
-		E938E70319FFBA5A003F2B42 /* AnimateTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E938E70219FFBA5A003F2B42 /* AnimateTimerView.m */; };
+		3A07760E0CAD909E7E79880C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24882A784617FDFB4079B32C /* libPods.a */; };
+		E94611741A011ADD006D531D /* NeoSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = E94611731A011ADD006D531D /* NeoSwitch.m */; };
 		E98C2A5219FF86C800B2338F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C2A5119FF86C800B2338F /* main.m */; };
 		E98C2A5519FF86C800B2338F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C2A5419FF86C800B2338F /* AppDelegate.m */; };
 		E98C2A5819FF86C800B2338F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E98C2A5719FF86C800B2338F /* ViewController.m */; };
@@ -30,10 +30,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E938E6FE19FFBA4A003F2B42 /* AnimateLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimateLayerView.h; sourceTree = "<group>"; };
-		E938E6FF19FFBA4A003F2B42 /* AnimateLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimateLayerView.m; sourceTree = "<group>"; };
-		E938E70119FFBA5A003F2B42 /* AnimateTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimateTimerView.h; sourceTree = "<group>"; };
-		E938E70219FFBA5A003F2B42 /* AnimateTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimateTimerView.m; sourceTree = "<group>"; };
+		24882A784617FDFB4079B32C /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0DD03D64903A486913B1BC2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		DF9912D5D55261805768763A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E94611721A011ADD006D531D /* NeoSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NeoSwitch.h; sourceTree = "<group>"; };
+		E94611731A011ADD006D531D /* NeoSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NeoSwitch.m; sourceTree = "<group>"; };
 		E98C2A4C19FF86C800B2338F /* PCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98C2A5019FF86C800B2338F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E98C2A5119FF86C800B2338F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A07760E0CAD909E7E79880C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +72,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79C327ECAFBD97F991DE0869 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24882A784617FDFB4079B32C /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC723CA48E019E6104556FCA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF9912D5D55261805768763A /* Pods.debug.xcconfig */,
+				D0DD03D64903A486913B1BC2 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E98C2A4319FF86C800B2338F = {
 			isa = PBXGroup;
 			children = (
 				E98C2A4E19FF86C800B2338F /* PCDemo */,
 				E98C2A6819FF86C800B2338F /* PCDemoTests */,
 				E98C2A4D19FF86C800B2338F /* Products */,
+				AC723CA48E019E6104556FCA /* Pods */,
+				79C327ECAFBD97F991DE0869 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,10 +157,8 @@
 				EA384F9319FFF07B00187383 /* StyleKit.m */,
 				E98C2A7619FF88B500B2338F /* AnimatableView.h */,
 				E98C2A7719FF88B500B2338F /* AnimatableView.m */,
-				E938E6FE19FFBA4A003F2B42 /* AnimateLayerView.h */,
-				E938E6FF19FFBA4A003F2B42 /* AnimateLayerView.m */,
-				E938E70119FFBA5A003F2B42 /* AnimateTimerView.h */,
-				E938E70219FFBA5A003F2B42 /* AnimateTimerView.m */,
+				E94611721A011ADD006D531D /* NeoSwitch.h */,
+				E94611731A011ADD006D531D /* NeoSwitch.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -151,9 +170,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E98C2A6F19FF86C800B2338F /* Build configuration list for PBXNativeTarget "PCDemo" */;
 			buildPhases = (
+				449E1C4E961C9BB5E34B29A7 /* Check Pods Manifest.lock */,
 				E98C2A4819FF86C800B2338F /* Sources */,
 				E98C2A4919FF86C800B2338F /* Frameworks */,
 				E98C2A4A19FF86C800B2338F /* Resources */,
+				833F66816123543FEB1BC5C7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -238,17 +259,49 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		449E1C4E961C9BB5E34B29A7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		833F66816123543FEB1BC5C7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E98C2A4819FF86C800B2338F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E938E70019FFBA4A003F2B42 /* AnimateLayerView.m in Sources */,
 				E98C2A7819FF88B500B2338F /* AnimatableView.m in Sources */,
 				EA384F9419FFF07B00187383 /* StyleKit.m in Sources */,
-				E938E70319FFBA5A003F2B42 /* AnimateTimerView.m in Sources */,
 				E98C2A5819FF86C800B2338F /* ViewController.m in Sources */,
 				E98C2A5519FF86C800B2338F /* AppDelegate.m in Sources */,
+				E94611741A011ADD006D531D /* NeoSwitch.m in Sources */,
 				E98C2A5219FF86C800B2338F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +416,7 @@
 		};
 		E98C2A7019FF86C800B2338F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF9912D5D55261805768763A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PCDemo/Info.plist;
@@ -374,6 +428,7 @@
 		};
 		E98C2A7119FF86C800B2338F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0DD03D64903A486913B1BC2 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PCDemo/Info.plist;

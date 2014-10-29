@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MTTimingFunctions.h"
 
 @interface AnimatableView : UIView
 
-- (void)animateWithDuration:(NSTimeInterval)duration WithCompletionBlock:(void(^)())completion;
+@property (readonly) BOOL inAnimation;
+
+- (void)animateWithTarget:(id)target
+             drawSelector:(SEL)drawSelector
+                fromValue:(CGFloat)fromValue
+                  toValue:(CGFloat)toValue
+                 duration:(NSTimeInterval)duration
+           timingFunction:(MTTimingFunction)timingFunction
+               completion:(void(^)())completion;
 
 @end

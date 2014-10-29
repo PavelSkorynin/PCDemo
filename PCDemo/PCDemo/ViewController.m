@@ -8,12 +8,12 @@
 
 #import "ViewController.h"
 #import "AnimatableView.h"
-#import "AnimateLayerView.h"
-#import "AnimateTimerView.h"
+#import "NeoSwitch.h"
 
 @interface ViewController ()
 
 @property (nonatomic) NSMutableArray *animatableViews;
+@property (weak, nonatomic) IBOutlet NeoSwitch *neoSwitch;
 
 @end
 
@@ -23,17 +23,7 @@
 {
     [super viewDidLoad];
 
-    [self handleButtonClick:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (IBAction)handleButtonClick:(id)sender {
-    UIButton * button = sender;
-    
+/*
     if (_animatableViews != nil) {
         for (UIView * view in _animatableViews) {
             [view removeFromSuperview];
@@ -48,36 +38,21 @@
     for (int i = 0; i < N && i < (rows * cols); ++i) {
         float x = (i % cols) * width;
         float y = (i / cols) * width;
-        UIView * view = nil;
-        if (button == nil || button.tag == 0) {
-            view = [[AnimatableView alloc] initWithFrame:CGRectMake(x, y, width, width)];
-        } else if (button.tag == 1) {
-            view = [[AnimateTimerView alloc] initWithFrame:CGRectMake(x, y, width, width)];
-        } else if (button.tag == 2) {
-            view = [[AnimateLayerView alloc] initWithFrame:CGRectMake(x, y, width, width)];
-        }
+        UIView * view = [[AnimatableView alloc] initWithFrame:CGRectMake(x, y, width, width)];
         
         view.clearsContextBeforeDrawing = YES;
         view.backgroundColor = [UIColor clearColor];
         [_animatableViews addObject:view];
         [self.view addSubview:view];
     }
-    [self animateView];
+*/
 }
 
-- (void)animateView
+- (void)viewDidAppear:(BOOL)animated
 {
-    for (id view in _animatableViews) {
-        if (view == _animatableViews.lastObject) {
-            [view animateWithDuration:2 WithCompletionBlock:^{
-                if ([view superview] == self.view) {
-                    [self animateView];
-                }
-            }];
-        } else {
-            [view animateWithDuration:2 WithCompletionBlock:nil];
-        }
-    }
+    [super viewDidAppear:animated];
 }
+
+
 
 @end

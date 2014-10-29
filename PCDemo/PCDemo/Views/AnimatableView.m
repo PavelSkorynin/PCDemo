@@ -11,82 +11,90 @@
 @interface AnimatableView ()
 
 @property (nonatomic) CADisplayLink * displayLink;
-@property () NSTimeInterval duration;
-@property () NSTimeInterval currentTime;
-@property () NSTimeInterval prevTime;
-@property () NSTimeInterval startTime;
-@property (nonatomic, strong) void (^completion)();
+
+@property (nonatomic, weak) id animationTarget;
+@property (nonatomic, assign) SEL animationSelector;
+@property () CGFloat animationValueFrom;
+@property () CGFloat animationValueTo;
+@property () NSTimeInterval animationDuration;
+@property () MTTimingFunction animationTimingFunction;
+@property (nonatomic, strong) void (^animationCompletionBlock)();
+
+@property () NSTimeInterval animationStartTime;
 
 @end
 
 @implementation AnimatableView
 
-- (void)animateWithDuration:(NSTimeInterval)duration WithCompletionBlock:(void(^)())completion {
-    _completion = completion;
-    _duration = duration;
-    _startTime = CACurrentMediaTime();
-    _prevTime = CACurrentMediaTime();
-    _currentTime = 0;
-    
+- (void)animateWithTarget:(id)target
+             drawSelector:(SEL)drawSelector
+                fromValue:(CGFloat)fromValue
+                  toValue:(CGFloat)toValue
+                 duration:(NSTimeInterval)duration
+           timingFunction:(MTTimingFunction)timingFunction
+               completion:(void (^)())completion
+{
     if (_displayLink != nil) {
         [_displayLink invalidate];
         _displayLink = nil;
     }
+
+    _animationTarget = target;
+    _animationSelector = drawSelector;
+    _animationValueFrom = fromValue;
+    _animationValueTo = toValue;
+    _animationDuration = duration;
+    _animationTimingFunction = timingFunction;
+    _animationCompletionBlock = completion;
+    
     _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateDisplayLink:)];
     [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    _animationStartTime = CACurrentMediaTime();
+    _inAnimation = YES;
 }
 
-
 - (void)drawRect:(CGRect)rect {
-    _prevTime = _currentTime;
-    _currentTime = CACurrentMediaTime() - _startTime;
-    float timeline = 0;
-    if (_duration > 0) {
-        timeline = _currentTime / _duration;
+    [super drawRect:rect];
+    
+    if (_inAnimation) {
+        NSTimeInterval currentTime = CACurrentMediaTime() - _animationStartTime;
+        CGFloat timeline = 0;
+        if (_animationDuration > 0) {
+            timeline = currentTime / _animationDuration;
+        }
+        if (_animationTimingFunction != NULL) {
+            timeline = _animationTimingFunction(timeline * _animationDuration, 0, 1, _animationDuration, 1.70158f);
+        }
+        timeline = _animationValueFrom + timeline * (_animationValueTo - _animationValueFrom);
+        if (_animationTarget != nil && _animationSelector != nil) {
+            NSInvocation *anInvocation = [NSInvocation
+                                          invocationWithMethodSignature:
+                                          [[_animationTarget class] instanceMethodSignatureForSelector:_animationSelector]];
+            
+            [anInvocation setSelector:_animationSelector];
+            [anInvocation setTarget:_animationTarget];
+            [anInvocation setArgument:&timeline atIndex:2];
+            [anInvocation invoke];
+        }
     }
-    [self drawCanvas1WithTimeline:timeline width:self.frame.size.width * 0.75f];
-    NSTimeInterval frameDuration = _currentTime - _prevTime;
-    [[NSString stringWithFormat:@"%.2f", frameDuration != 0 ? 1.0/frameDuration : 0] drawAtPoint:CGPointZero withAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Courier New" size:9], NSForegroundColorAttributeName: [UIColor blackColor]}];
 }
 
 - (void)updateDisplayLink:(CADisplayLink *)sender
 {
-    if (CACurrentMediaTime() - _startTime >= _duration) {
+    if (_displayLink == nil) {
+        return;
+    }
+    if (CACurrentMediaTime() - _animationStartTime >= _animationDuration) {
         [_displayLink invalidate];
         _displayLink = nil;
-        if (_completion != nil) {
-            _completion();
+        _inAnimation = NO;
+        if (_animationCompletionBlock != nil) {
+            _animationCompletionBlock();
         }
     } else {
         [self setNeedsDisplay];
     }
 }
 
-//// PaintCode Trial Version
-//// www.paintcodeapp.com
-
-- (void)drawCanvas1WithTimeline: (CGFloat)timeline width: (CGFloat)width
-{
-    //// General Declarations
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    
-    //// Variable Declarations
-    CGFloat rotation = timeline * 360;
-    UIColor* color = [UIColor colorWithRed: timeline green: 1 - timeline blue: 0 alpha: 1];
-    CGFloat radius = width * timeline / 2.0;
-    CGFloat position = width / 2.0;
-    
-    //// Rectangle Drawing
-    CGContextSaveGState(context);
-    CGContextTranslateCTM(context, position / 0.75f, position / 0.75f);
-    CGContextRotateCTM(context, -rotation * M_PI / 180);
-    
-    UIBezierPath* rectanglePath = [UIBezierPath bezierPathWithRoundedRect: CGRectMake(-width/2, -width/2, width, width) cornerRadius: radius];
-    [color setFill];
-    [rectanglePath fill];
-    
-    CGContextRestoreGState(context);
-}
 
 @end
