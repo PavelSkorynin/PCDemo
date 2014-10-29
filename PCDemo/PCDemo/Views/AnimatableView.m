@@ -61,6 +61,12 @@
         CGFloat timeline = 0;
         if (_animationDuration > 0) {
             timeline = currentTime / _animationDuration;
+            if (timeline >= 1) {
+                _inAnimation = NO;
+                if (_animationCompletionBlock != nil) {
+                    _animationCompletionBlock();
+                }
+            }
         }
         if (_animationTimingFunction != NULL) {
             timeline = _animationTimingFunction(timeline * _animationDuration, 0, 1, _animationDuration, 1.70158f);
@@ -87,13 +93,9 @@
     if (CACurrentMediaTime() - _animationStartTime >= _animationDuration) {
         [_displayLink invalidate];
         _displayLink = nil;
-        _inAnimation = NO;
-        if (_animationCompletionBlock != nil) {
-            _animationCompletionBlock();
-        }
-    } else {
-        [self setNeedsDisplay];
     }
+    
+    [self setNeedsDisplay];
 }
 
 

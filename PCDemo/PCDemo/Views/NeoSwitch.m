@@ -9,8 +9,8 @@
 #import "NeoSwitch.h"
 #import "StyleKit.h"
 
-#define DURATION 0.4
-#define ANIMATION_FUNCTION MTTimingFunctionEaseInOutQuad
+#define DURATION 0.5
+#define ANIMATION_FUNCTION MTTimingFunctionEaseInOutQuart
 
 @interface NeoSwitch()
 
@@ -84,7 +84,7 @@
 {
     [super drawRect:rect];
     if (![self inAnimation]) {
-        [self drawSwitchAnimated:0];
+        [self drawSwitchAnimated:_currentTimeline];
     }
 }
 
